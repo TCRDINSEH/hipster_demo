@@ -108,7 +108,6 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
-                withCredentials([file(credentialsId: "${GCP_CREDENTIALS}", variable: 'GCLOUD_KEY')])
                 echo "☸️ Deploying microservices using Kubernetes manifests..."
                 sh '''
                     # Apply all manifests in the kubernetes-manifests directory
