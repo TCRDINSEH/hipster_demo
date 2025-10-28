@@ -111,8 +111,8 @@ pipeline {
                 withCredentials([file(credentialsId: "${GCP_CREDENTIALS}", variable: 'GCLOUD_KEY')])
                 echo "☸️ Deploying microservices using Kubernetes manifests..."
                 sh '''
-                    # Apply all manifests in the k8s-specifications directory
-                    kubectl apply -f k8s-specifications/
+                    # Apply all manifests in the kubernetes-manifests directory
+                    kubectl apply -f kubernetes-manifests/
 
                     # Optional: verify deployment status for each service
                     for deploy in $(kubectl get deploy -o name); do
