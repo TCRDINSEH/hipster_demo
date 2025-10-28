@@ -108,6 +108,7 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
+                 withCredentials([file(credentialsId: "${GCP_CREDENTIALS}", variable: 'GCLOUD_KEY') ]) {    
                 sh '''
                 gcloud auth activate-service-account --key-file=$GCLOUD_KEY
                 gcloud config set project ${PROJECT_ID}
@@ -122,6 +123,7 @@ pipeline {
                         kubectl rollout status $deploy
                     done
                 '''
+            }
             }
         }
     }
