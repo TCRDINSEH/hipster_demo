@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         PROJECT_ID = 'fundamental-run-464208-v1'
-        CLUSTER_NAME = 'tf-gke-cluster'
+        CLUSTER_NAME = 'hipster-gke-cluster'
         CLUSTER_ZONE = 'us-central1-a'
         REGION = 'us-central1'
         GCP_CREDENTIALS = 'artifact-registry-credentials'
@@ -14,9 +14,9 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 sh '''
-                    rm -rf front-end
-                    git clone https://github.com/TCRDINSEH/front-end.git
-                    cd front-end
+                    rm -rf hipster_demo
+                    git clone https://github.com/TCRDINSEH/hipster_demo.git
+                    cd hipster_demo
                     pwd
                     ls -la
                 '''
