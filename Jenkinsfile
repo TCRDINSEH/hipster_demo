@@ -108,6 +108,9 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
+                gcloud auth activate-service-account --key-file=$GCLOUD_KEY
+                gcloud config set project ${PROJECT_ID}
+                gcloud container clusters get-credentials ${CLUSTER_NAME} --zone ${CLUSTER_ZONE} --project ${PROJECT_ID}
                 echo "☸️ Deploying microservices using Kubernetes manifests..."
                 sh '''
                     # Apply all manifests in the kubernetes-manifests directory
